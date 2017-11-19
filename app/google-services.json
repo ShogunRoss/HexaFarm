@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "710075135940",
+    "firebase_url": "https://hexa-farm.firebaseio.com",
+    "project_id": "hexa-farm",
+    "storage_bucket": "hexa-farm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710075135940:android:d387d325b7528890",
+        "android_client_info": {
+          "package_name": "com.example.shogunross.hexafarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710075135940-2ge42j95eec1l5kqti2u62e4h89hp9gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDDRvYhi6JrJ5YsshHyrqiQHe225osIM8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
