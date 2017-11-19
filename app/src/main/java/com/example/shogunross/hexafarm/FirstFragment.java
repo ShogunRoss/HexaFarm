@@ -1,6 +1,7 @@
 package com.example.shogunross.hexafarm;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,34 +37,8 @@ public class FirstFragment extends Fragment {
     ImageView entry1,entry2,entry3,entry4,entry5,entry6;
     ImageButton btnSeed, btnAuto, btnDig;
 
-    public void showPopup(View anchorView) {
-
-        View popupView = getLayoutInflater().inflate(R.layout.popup_menu, null);
-
-        PopupWindow popupWindow = new PopupWindow(popupView,
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-
-
-        // Initialize more widgets from `popup_layout.xml`
-
-        // If the PopupWindow should be focusable
-        popupWindow.setFocusable(true);
-
-        // If you need the PopupWindow to dismiss when when touched outside
-        popupWindow.setBackgroundDrawable(new ColorDrawable());
-
-        int location[] = new int[2];
-
-        // Get the View's(the one that was clicked in the Fragment) location
-        anchorView.getLocationOnScreen(location);
-
-        // Using location, the PopupWindow will be displayed right under anchorView
-        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
-                location[0], location[1] + anchorView.getHeight());
-
-    }
-
+    public int vegetableSelected;
+    public boolean[] entryChecked = new boolean[6];
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -83,30 +58,87 @@ public class FirstFragment extends Fragment {
         btnAuto = getActivity().findViewById(R.id.buttonAuto);
         btnDig = getActivity().findViewById(R.id.buttonDig);
 
-
+        entry1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vegetableSelected != 0){
+                    entry1.setImageResource(R.drawable.base_plant10);
+                    entryChecked[0] = true;
+                }
+            }
+        });
+        entry2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vegetableSelected != 0){
+                    entry2.setImageResource(R.drawable.base_plant10);
+                    entryChecked[1] = true;
+                }
+            }
+        });
+        entry3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vegetableSelected != 0){
+                    entry3.setImageResource(R.drawable.base_plant10);
+                    entryChecked[2] = true;
+                }
+            }
+        });
+        entry4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vegetableSelected != 0){
+                    entry4.setImageResource(R.drawable.base_plant10);
+                    entryChecked[3] = true;
+                }
+            }
+        });
+        entry5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vegetableSelected != 0){
+                    entry5.setImageResource(R.drawable.base_plant10);
+                    entryChecked[4] = true;
+                }
+            }
+        });
+        entry6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vegetableSelected != 0){
+                    entry6.setImageResource(R.drawable.base_plant10);
+                    entryChecked[5] = true;
+                }
+            }
+        });
 
         btnSeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Toast.makeText(getActivity(),"You have selected buttonSeed",Toast.LENGTH_SHORT).show();
-            mListener.replaceFragment(2);
-
-                //showPopup(v);
-
-                /*PopupMenu popupMenu = new PopupMenu(getActivity(), view);
-                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(getActivity(),"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-                });
-                popupMenu.show();//showing popup menu*/
-
+                Toast.makeText(getActivity(),"You have selected buttonSeed",Toast.LENGTH_SHORT).show();
+                mListener.replaceFragment(2, 0, entryChecked);
             }
-
         });
+
+        if (entryChecked[0]){
+            entry1.setImageResource(R.drawable.base_plant10);
+        }
+        if (entryChecked[1]){
+            entry2.setImageResource(R.drawable.base_plant10);
+        }
+        if (entryChecked[2]){
+            entry3.setImageResource(R.drawable.base_plant10);
+        }
+        if (entryChecked[3]){
+            entry4.setImageResource(R.drawable.base_plant10);
+        }
+        if (entryChecked[4]){
+            entry5.setImageResource(R.drawable.base_plant10);
+        }
+        if (entryChecked[5]){
+            entry6.setImageResource(R.drawable.base_plant10);
+        }
     }
 
     @Nullable
@@ -115,6 +147,17 @@ public class FirstFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.first_fragment, container, false);
+
+        Bundle bundle = getArguments();
+
+        if(bundle != null){
+            //Toast.makeText(getActivity(), "You have got "+ bundle.getInt("vegetableSelected"), Toast.LENGTH_SHORT).show();
+            vegetableSelected = bundle.getInt("vegetableSelected");
+            entryChecked = bundle.getBooleanArray("empty");
+        }
+
+
+
         return view;
     }
 

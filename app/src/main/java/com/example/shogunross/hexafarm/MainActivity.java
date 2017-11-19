@@ -1,5 +1,6 @@
 package com.example.shogunross.hexafarm;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentChangeListener{
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //displaySelectedScreen(R.id.nav_first);
+
+
     }
 
     @Override
@@ -103,19 +107,26 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void replaceFragment(int id) {
+    public void replaceFragment(int id, int position, boolean[] empty) {
+        Bundle args = new Bundle();
+
         if (id == 1) {
             Fragment fragment = new FirstFragment();
+            args.putInt("vegetableSelected", position);
+            args.putBooleanArray("empty", empty);
+            fragment.setArguments(args);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_main, fragment);
             ft.commit();
+
         }
         else if (id == 2) {
             Fragment fragment = new ThirdFragment();
+            args.putBooleanArray("empty", empty);
+            fragment.setArguments(args);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_main, fragment);
             ft.commit();
         }
-
     }
 }

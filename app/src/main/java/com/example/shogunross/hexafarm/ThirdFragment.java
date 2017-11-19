@@ -1,6 +1,7 @@
 package com.example.shogunross.hexafarm;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
  */
 
 public class ThirdFragment extends Fragment {
+
+    public int vegetableSelected;
+    public boolean[] empty = new boolean[6];
 
     private FragmentChangeListener mListener;
 
@@ -41,7 +45,7 @@ public class ThirdFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(),"You selected " + arrayVegetable.get(position).getName(), Toast.LENGTH_SHORT).show();
-                mListener.replaceFragment(1);
+                mListener.replaceFragment(1, position + 1, empty);
             }
         });
     }
@@ -52,7 +56,10 @@ public class ThirdFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.third_fragment, container, false);
-
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            empty = bundle.getBooleanArray("empty");
+        }
         return view;
     }
 

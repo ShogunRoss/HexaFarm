@@ -1,5 +1,6 @@
 package com.example.shogunross.hexafarm;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 /**
@@ -7,5 +8,5 @@ import android.support.v4.app.Fragment;
  */
 
 public interface FragmentChangeListener {
-    public void replaceFragment(int id);
+    public void replaceFragment(int id, int position, boolean[] empty);
 }
